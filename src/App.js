@@ -1,11 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+import { connect } from "react-redux";
+import { increment } from "./actions/counter";
+
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -18,9 +21,23 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <h1>{props.counter}</h1>
+      <p>
+        <button onClick={props.increment}>+</button>
+      </p>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    // state中包含的数据，实在reducers/index.js中，combineReducers中的数据
+    counter: state.counterReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { increment }
+)(App);
