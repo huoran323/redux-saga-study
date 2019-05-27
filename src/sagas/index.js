@@ -4,8 +4,8 @@ import axios from "axios";
 
 function* incrementAsync() {
   // 模拟异步操作
-  // yield call(delay, 2000);
-  yield delay(2000);
+  yield call(delay, 2000);
+  // yield delay(2000);
   // put用来发送action
   // yield put({ type: "INCREMENT" });
   yield put(increment());
