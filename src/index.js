@@ -9,7 +9,7 @@ import rootReducers from "./reducers";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
-import { helloSaga } from "./sagas";
+import { watchFetchUser } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -17,7 +17,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(watchFetchUser);
 
 ReactDOM.render(
   <Provider store={store}>
