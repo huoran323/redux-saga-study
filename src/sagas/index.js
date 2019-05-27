@@ -16,9 +16,10 @@ export function* watchIncrementAsync() {
   yield takeEvery("INCREMENT_ASYNC", incrementAsync);
 }
 
-function* fetchUser() {
+export function* fetchUser() {
   const user = yield call(
-    axios.get("https://jsonplaceholder.typicode.com/users")
+    axios.get,
+    "https://jsonplaceholder.typicode.com/users"
   );
   console.log(user);
 }
