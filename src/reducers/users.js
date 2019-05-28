@@ -18,6 +18,12 @@ const user = (state = initialState, action = {}) => {
         error: null,
         user: action.user
       };
+    case "FETCH_USER_FAILURE":
+      return {
+        isFetching: false,
+        error: action.error,
+        user: null
+      };
     default:
       return state;
   }
