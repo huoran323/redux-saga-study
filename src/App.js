@@ -6,6 +6,17 @@ import { increment, incrementAsync } from "./actions/counter";
 import { get_user } from "./actions/user";
 
 function App(props) {
+  const { isFetching, error, user } = props.user;
+
+  let data;
+
+  if (error) {
+    data = error;
+  } else if (isFetching) {
+    data = "Loading...";
+  } else {
+    data = user && user.data[0].name;
+  }
   return (
     <div className="App">
       <h1>{props.counter}</h1>
@@ -16,6 +27,7 @@ function App(props) {
         <br />
         <button onClick={props.get_user}>Get User</button>
       </p>
+      <h1>{data}</h1>
     </div>
   );
 }
@@ -23,7 +35,8 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     // state中包含的数据，实在reducers/index.js中，combineReducers中的数据
-    counter: state.counterReducer
+    counter: state.counterReducer,
+    user: state.user
   };
 };
 
